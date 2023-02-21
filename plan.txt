@@ -1,0 +1,16 @@
+Filtering 
+- try to filter cats, then dogs
+- try to filter either cats or dogs 
+- add user interactivity
+-add the "all" filter
+
+Sorting
+-try sorting by Name, then type
+- add user interactivity
+- a more generic sort function?
+- change sort direction
+
+
+Combine filtering and sorting
+
+- other fixes
