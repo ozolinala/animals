@@ -47,17 +47,30 @@ function whichAnimal(animal){
 //  ------------------- SORTING ----------------------------
 
 function sortList(sortBy){
-    let sortedList = allAnimals;
-    if (sortBy === "name"){
-sortedList = sortedList.sort(sortByName);
-    } else if(sortBy === "type"){
-        sortedList = sortedList.sort(sortByType);
-            }
-            else if(sortBy === "desc"){
-                sortedList = sortedList.sort(sortByDesc);
-                    } else if(sortBy === "age"){
-                        sortedList = sortedList.sort(sortByAge);
-                            }
+// more generic sorting
+let sortedList = allAnimals;
+
+sortedList = sortedList.sort(sortByProperty);
+
+function sortByProperty(animalA, animalB){
+    if (animalA[sortBy] < animalB[sortBy]) {
+        return 1;
+    } else {
+        return -1;
+    }
+}
+    // THE OLD WAY
+//     let sortedList = allAnimals;
+//     if (sortBy === "name"){
+// sortedList = sortedList.sort(sortByName);
+//     } else if(sortBy === "type"){
+//         sortedList = sortedList.sort(sortByType);
+//             }
+//             else if(sortBy === "desc"){
+//                 sortedList = sortedList.sort(sortByDesc);
+//                     } else if(sortBy === "age"){
+//                         sortedList = sortedList.sort(sortByAge);
+//                             }
     displayList(sortedList);
 }
 
@@ -77,19 +90,21 @@ function sortByType(animalA, animalB){
     }
     }
     function sortByDesc(animalA, animalB){
-        if (animalA.type < animalB.desc){
+        if (animalA.desc < animalB.desc){
             return -1;
         } else {
             return 1;
         }
         }
         function sortByAge(animalA, animalB){
-            if (animalA.type < animalB.age){
+            const ageA = parseInt(animalA.age);
+            const ageB = parseInt(animalB.age);
+            if (ageA < ageB){
                 return -1;
             } else {
-                return 1;
+                return -1;
             }
-            }
+        }
             // user interactivity
             function selectSort(event){
                 // let sortedList;
