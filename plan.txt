@@ -6,6 +6,7 @@ Filtering
 
 Sorting
 -try sorting by Name, then type
+- sort either name or type
 - add user interactivity
 - a more generic sort function?
 - change sort direction

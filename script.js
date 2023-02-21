@@ -21,7 +21,9 @@ function start( ) {
 }
 
 function registerButtons(){
-    document.querySelectorAll(".filter").forEach((each) =>{each.addEventListener("click", selectFilter)});
+    // document.querySelectorAll(".filter").forEach((each) =>{each.addEventListener("click", selectFilter)});
+    document.querySelectorAll("[data-action='filter']").forEach(button => button.addEventListener("click", selectFilter));
+    document.querySelectorAll("[data-action='sort']").forEach(button => button.addEventListener("click", selectSort));
 }
 
 //  ------------------- FILTERING ---------------------
@@ -44,9 +46,64 @@ function whichAnimal(animal){
 
 //  ------------------- SORTING ----------------------------
 
+function sortList(sortBy){
+    let sortedList = allAnimals;
+    if (sortBy === "name"){
+sortedList = sortedList.sort(sortByName);
+    } else if(sortBy === "type"){
+        sortedList = sortedList.sort(sortByType);
+            }
+            else if(sortBy === "desc"){
+                sortedList = sortedList.sort(sortByDesc);
+                    } else if(sortBy === "age"){
+                        sortedList = sortedList.sort(sortByAge);
+                            }
+    displayList(sortedList);
+}
 
+function sortByName(animalA, animalB){
+if (animalA.name < animalB.name){
+    return -1;
+} else {
+    return 1;
+}
+}
 
-
+function sortByType(animalA, animalB){
+    if (animalA.type < animalB.type){
+        return -1;
+    } else {
+        return 1;
+    }
+    }
+    function sortByDesc(animalA, animalB){
+        if (animalA.type < animalB.desc){
+            return -1;
+        } else {
+            return 1;
+        }
+        }
+        function sortByAge(animalA, animalB){
+            if (animalA.type < animalB.age){
+                return -1;
+            } else {
+                return 1;
+            }
+            }
+            // user interactivity
+            function selectSort(event){
+                // let sortedList;
+                // buttonDataFilter = event.target.dataset.sort;
+                // if (buttonDataSort !== "*") {
+                //     sortedList = allAnimals.sort(whichAnimal);
+                // } else {
+                //     sortedList = allAnimals;
+                // }
+                // displayList(sortedList);
+                const sortBy = event.target.dataset.sort;
+                console.log(`User selected ${sortBy}`);
+                sortList(sortBy);
+            }
 //  ------------------- PREPARE OBJECTS FROM DATABASE ---------------------
 async function loadJSON() {
     const response = await fetch("animals.json");
